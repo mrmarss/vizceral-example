@@ -150,8 +150,8 @@ class TrafficFlow extends React.Component {
 
   beginSampleData () {
     this.traffic = { nodes: [], connections: [] };
-    request.get('sample_data.json')
-      .set('Accept', 'application/json')
+    request.get('http://127.0.0.1:9000/vizgraph')
+      .set('Content-Type', 'application/json')
       .end((err, res) => {
         if (res && res.status === 200) {
           this.traffic.clientUpdateTime = Date.now();
@@ -166,6 +166,7 @@ class TrafficFlow extends React.Component {
 
     // Listen for changes to the stores
     filterStore.addChangeListener(this.filtersChanged);
+    this.timer = setInterval(this.beginSampleData.bind(this), 60000);
   }
 
   componentWillUnmount () {
