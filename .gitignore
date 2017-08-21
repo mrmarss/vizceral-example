@@ -17,3 +17,6 @@ node_modules
 # Temporary Files and Backups
 *.swp
 *.*~
+
+# Sample Traffic Date
+src/my_sample_data.json
